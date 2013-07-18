@@ -1,0 +1,17 @@
+#search_input{
+    width: 80px;
+}
+
+.thumbnail > li {
+    margin:0 0 0 0;
+}
+
+
+.game_thumbnail{
+    /*width: 213px;
+    height: 120px;*/
+}
+.game_description{
+    height: 40px;
+    overflow: hidden;
+}

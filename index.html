@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">-->
+
+
+    <link href="css/search.css" rel="stylesheet">
+
+
+    <template id="search_result_games_template">
+        <ul class="well thumbnails">
+            <div>{{msg}}</div>
+            {{#data}}
+            <li style="margin:0 0 0 0;"> <!-- help -->
+                <div class="thumbnail">
+                    <div class="row-fluid">
+                        <div class="span3">
+                            <img src="{{real_thumb}}" alt="">
+                        </div>
+                        <div class="span6">
+                            <h5>{{name}}</h5>
+                            <h6><a href="http://bbs.66rpg.com/?{{uid}}">uid{{uid}}</a></h6>
+
+                            <p>{{real_description}}</p>
+
+                        </div>
+                        <div class="span3">
+                            <h5>游戏类型</h5>
+
+                            <p>★★★★★☆</p>
+
+                            <p>{{play_times}}个玩家</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/data}}
+        </ul>
+    </template>
+
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">66RPG</a>
+
+            <div class="nav-collapse collapse">
+                <form id="user_not_logged_in" class="navbar-form pull-right">
+                    <input class="span2" type="text" placeholder="用户名">
+                    <input class="span2" type="password" placeholder="密码">
+                    <button type="submit" class="btn">登录</button>
+                </form>
+
+                <p id="user_logged_in" class="navbar-text pull-right" hidden>
+                    欢迎回来, <a id="user_name" href="#" class="navbar-link"></a>
+                </p>
+                <ul class="nav">
+                    <li class="active"><a href="#">首页</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well">
+                <div class="input-append">
+                    <input class="span2" id="search_input" type="text">
+                    <button class="btn" type="button">搜索</button>
+                </div>
+            </div>
+
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header">TAG</li>
+                    <li class="active"><a href="#">Project1</a></li>
+                    <li><a href="#">Project2</a></li>
+                    <li class="nav-header">游戏字数</li>
+                    <li><a href="#">不限</a></li>
+                    <li><a href="#">30万字以下</a></li>
+                    <li><a href="#">其实多少合适</a></li>
+                    <li><a href="#">大概就这样吧</a></li>
+                    <li><a href="#">wsmdbzd</a></li>
+                    <li><a href="#">喵</a></li>
+                    <li class="nav-header">更新时间</li>
+                    <li><a href="#">不限</a></li>
+                    <li><a href="#">一周内</a></li>
+                    <li><a href="#">一月内</a></li>
+                    <li><a href="#">一年内</a></li>
+                    <li class="nav-header">价格</li>
+                    <li><a href="#">不限</a></li>
+                    <li><a href="#">付费</a></li>
+                    <li><a href="#">免费</a></li>
+
+                </ul>
+            </div>
+            <!--/.well -->
+        </div>
+        <!--/span-->
+        <div id="search_result" class="span9">
+
+        </div>
+        <!--/span-->
+
+
+    </div>
+    <!--/row-->
+
+    <hr>
+
+    <footer>
+        <p>&copy; 66RPG 2013</p>
+    </footer>
+
+</div>
+<!--/.fluid-container-->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery-2.0.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/mustache.js"></script>
+<script src="js/application.js"></script>
+
+<script src="js/search.js"></script>
+
+</body>
+</html>
